@@ -1,1 +1,2 @@
-# mycolors <br> ##A collection of my favourite colors
+# mycolors
+## A collection of my favourite colors
