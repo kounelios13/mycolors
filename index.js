@@ -14,18 +14,17 @@ var createList = function(colorString) {
 	list += "</div>";
 	return list;
 };
-var createColorLists= function(outputPanel,colorlist){
-	if(!colorlist || !outputPanel)
-		throw new Error("Please enter a valid html element and a vali color list");
-	var out = $(outputPanel);
+var createColorLists= function(colorlist){
+	
+	
 	var index = 0;
 	var max = colorlist.length;
 	var maxdiv = Math.floor(max / 4);
 	var mode = max % 4;
-	var str = "<div class='container'>div class='row'>";
+	var str = "<div class='container'><div class='row'>";
 	for(var i = 0 ; i < max; i++){
 		if(i && i % 4 == 0)
-			str+="</div><div class='row'>";
+			str+="</div><div><div class='row'>";
 		str+=createList(colorlist.slice(index,index+4).join(","));
 		index+=4;
 	}
@@ -46,5 +45,7 @@ function createSamples(outputPanel, colorlist) {
 	$(outputPanel).html(samples);
 }
 $(function() {
-	createColorLists("#coloeexamples",colors);
+	
+	var markup = createColorLists(colors);
+	$("#colorexamples").html(markup);
 });
