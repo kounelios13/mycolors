@@ -1,34 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>mycolors</title>
-	<!-- Latest compiled and minified CSS & JS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-	<style type="text/css">
-		.sample{
-			border-radius:100px;
-			margin:auto;
-			height: 50px;
-			width:50px;
-		}
-		.row{
-			padding: 10px;
-			margin-down:10px;
-		}
-	</style>
-	<script src="https://code.jquery.com/jquery.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-	<script src="index.js"></script>
-</head>
-<body>
-	<div class="container">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>mycolors</title>
+		<!-- Latest compiled and minified CSS & JS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<style type="text/css">
+			.list-group-item{
+				color:white;
+				text-align: center;
+				transition:900ms ease-in all;
+			}
+			.list-group-item:hover{
+				font-style: italic;
+			}
+			.row{
+				padding: 10px;
+				margin-down:10px;
+			}
+			.jumbotron{
+				background: black;
+				color:rgba(255,255,255,.7);
+			}
+		</style>
+		<script src="https://code.jquery.com/jquery.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<script src="index.js"></script>
+	</head>
+	<body>
 		<div class="jumbotron">
 			<h1 class="text-center">mycolors</h1>
 		</div>
-		<div id="colorexamples">
+		<div class="container">
+			
+			<div id="colorexamples">
+			</div>
 		</div>
-	</div>
-</body>
+	</body>
 </html>

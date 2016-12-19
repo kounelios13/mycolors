@@ -1,5 +1,7 @@
 var colors = ["#0091d8", "#00acd8", "#ff8541", "#ffe541", "#4dc4ff", "#e40026"];
-var t = ["red", "green", "green", "orange", "black", "grey", "blue", "brown", "aliceblue", "lightblue", "lightsteelblue", "gold", "yellow", "lightyellow", "darkorange", "lightgreen", "lightgrey"];
+var t = colors.slice(0);
+for(var r of colors)
+	t.push(r);
 var createList = function(colorString) {
 	var array = colorString.split(',');
 	var max = array.length;
@@ -28,13 +30,15 @@ var createColorLists = function(colorList){
 	if(mod(arraySize,4))
 		totalLists++;
 	var colorIndex = 0;
+	var rowIndex = 0;
 	var remaining = arraySize - div(arraySize,4);
 	var str = "<div class = 'container'><div class='row'>";
 	for(var i = 0;i < totalLists;i++)
 	{
-		if(i && !mod(i,maxCol)){
+		if(i && !mod(rowIndex,maxCol)){
 			str+="</div><div class='row'>";
 		}
+		rowIndex+=6;
 		var colorString = colorList.slice(colorIndex,colorIndex+4).join(",");
 		colorIndex+=4;
 		var ul = createList(colorString);
