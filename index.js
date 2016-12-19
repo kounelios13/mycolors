@@ -1,4 +1,4 @@
-var colors = ["#0091d8", "#00acd8", "#ff8541", "#ffe541", "#4dc4ff", "#e40026"];
+var colors = ["#9ad3de","#89bdd3","#89bdd3","#89bdd3","#c8be51","#0091d8", "#00acd8", "#ff8541", "#ffe541", "#4dc4ff", "#e40026"];
 var t = colors.slice(0);
 for(var r of colors)
 	t.push(r);
@@ -42,14 +42,14 @@ var createColorLists = function(colorList){
 		var colorString = colorList.slice(colorIndex,colorIndex+4).join(",");
 		colorIndex+=4;
 		var ul = createList(colorString);
-		var wrapped = wrapToCol(ul,6);
+		var wrapped = wrapToCol(ul,remaining==1&& i >= totalLists?12:6);
 		str+=wrapped;
 	}
 	str+="</div></div>";
 	return str;
 };
 $(function() {
-	var markup = createColorLists(t);
+	var markup = createColorLists(Array.from(new Set(colors)));
 	$("#colorexamples").html(markup);
 	$(".list-group-item").on("click", function() {
 		var color = $(this).html();
