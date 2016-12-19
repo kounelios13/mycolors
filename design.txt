@@ -1,0 +1,6 @@
+Each rows has 2 sets of color list
+Each list has 4 colors
+Check if sizeof color list mod 4 = 0
+Check sizeof colorlist div 4 to find number of lists to create
+totalLists= sizeof colorlist div 4
+if colorlist mod 4 = 1 then totalLists +=1
