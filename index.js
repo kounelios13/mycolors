@@ -1,7 +1,11 @@
-var colors = ["#9ad3de","#89bdd3","#89bdd3","#89bdd3","#c8be51","#0091d8", "#00acd8", "#ff8541", "#ffe541", "#4dc4ff", "#e40026"];
-var t = colors.slice(0);
+var colors = ["#e22d00","#2f688e","#6ed3cf","#9ad3de",
+"#89bdd3","#89bdd3","#89bdd3","#c8be51",
+"#0091d8", "#00acd8", "#ff8541", "#ffe541",
+ "#4dc4ff", "#e40026","#98dafc","#6534ff",
+ "#62bcfa","#e05038","#c43235"];
+/*var t = colors.slice(0);
 for(var r of colors)
-	t.push(r);
+	t.push(r);*/
 var createList = function(colorString) {
 	var array = colorString.split(',');
 	var max = array.length;
@@ -49,7 +53,7 @@ var createColorLists = function(colorList){
 	return str;
 };
 $(function() {
-	var markup = createColorLists(Array.from(new Set(colors)));
+	var markup = createColorLists(Array.from(new Set(colors)).sort());
 	$("#colorexamples").html(markup);
 	$(".list-group-item").on("click", function() {
 		var color = $(this).html();
