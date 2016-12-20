@@ -2,7 +2,8 @@ var colors = ["#e22d00","#2f688e","#6ed3cf","#9ad3de",
 "#89bdd3","#89bdd3","#89bdd3","#c8be51",
 "#0091d8", "#00acd8", "#ff8541", "#ffe541",
  "#4dc4ff", "#e40026","#98dafc","#6534ff",
- "#62bcfa","#e05038","#c43235"];
+ "#62bcfa","#e05038","#c43235","#f2b632",
+ "#D32F2F","#F44336","#FF5722"];
 /*var t = colors.slice(0);
 for(var r of colors)
 	t.push(r);*/
