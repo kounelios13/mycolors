@@ -7,21 +7,40 @@ var colors = ["#e22d00", "#2f688e", "#6ed3cf", "#9ad3de",
 	"#1bbfe4", "#E71D36", "#004BA8", "#FF9F1C",
 	"#011627", "#9b3018", "#ffe047"
 ];
+var shuffleArray = function(array) {
+	var currentIndex = array.length,
+		temporaryValue, randomIndex;
+
+	// While there remain elements to shuffle...
+	while (0 !== currentIndex) {
+
+		// Pick a remaining element...
+		randomIndex = Math.floor(Math.random() * currentIndex);
+		currentIndex -= 1;
+
+		// And swap it with the current element.
+		temporaryValue = array[currentIndex];
+		array[currentIndex] = array[randomIndex];
+		array[randomIndex] = temporaryValue;
+	}
+
+	return array;
+};
 var createList = function(colorString) {
 	var array = colorString.split(',');
 	var max = array.length;
 	//Create the opening tag
-	var list = "<div class='list-group'>";
+	var list = "<div class='list-group'>\n\t";
 	for (var i = 0; i < max; i++) {
 		var color = array[i];
-		list += "<div class='list-group-item' style='background-color:" + color.toUpperCase() + "'>" + color + "</div>";
+		list += "<div class='list-group-item' style='background-color:" + color.toUpperCase() + "'>" + color + "</div>\n";
 	}
 	//Add the closing tag
 	list += "</div>";
 	return list;
 };
 var wrapToCol = function(item, col_num) {
-	return "<div class='col-md-" + col_num + "'>" + item + "</div>";
+	return "<div class='col-md-" + col_num + "'>" + item + "</div>\n\t";
 };
 var log = function(o) {
 	console.log(o);
@@ -38,11 +57,11 @@ var createColorLists = function(colorList) {
 	var colorIndex = 0;
 	var rowIndex = 0;
 	var remaining = arraySize - div(arraySize, 4);
-	var str = "<div class = 'container'><div class='row'>";
+	var str = "<div class = 'container'>\n\t<div class='row'>";
 	var listmod = mod(arraySize, 2);
 	for (var i = 0; i < numofrows; i++) {
 		if (i && !mod(rowIndex, maxCol)) {
-			str += "</div><div class='row'>";
+			str += "\n\t\t</div>\n\t<div class='row'>";
 		}
 		rowIndex += 6;
 		var currentcolors = colorList.slice(colorIndex, colorIndex + 4);
@@ -57,11 +76,11 @@ var createColorLists = function(colorList) {
 		str += wrapped;
 		colorIndex += 4;
 	}
-	str += "</div></div>";
+	str += "\n\t\t</div>\n\t</div>\n";
 	return str;
 };
 $(function() {
-	var array = Array.from(new Set(colors)).sort();
+	var array = Array.from(new Set(colors.sort()));
 	var max = array.length;
 	var pos = Math.floor(Math.random() * max);
 	var cur = array[pos];
@@ -69,8 +88,14 @@ $(function() {
 	var markup = createColorLists(array);
 	$("body").css("background", cur);
 	$("#colorexamples").html(markup);
-	$(".list-group-item").on("click", function() {
+	$("#colorexamples").on("click", ".list-group-item", function() {
 		var color = $(this).html();
 		$("body").css("background", color);
+	});
+	$("#shuffle").on("click", function() {
+		shuffleArray(array);
+		var markup = createColorLists(array);
+		$("body").css("background", cur);
+		$("#colorexamples").html(markup);
 	});
 });
