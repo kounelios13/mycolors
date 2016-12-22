@@ -5,7 +5,7 @@ var colors = ["#e22d00", "#2f688e", "#6ed3cf", "#9ad3de",
 	"#62bcfa", "#e05038", "#c43235", "#f2b632",
 	"#D32F2F", "#F44336", "#FF5722", "#FFC107",
 	"#1bbfe4", "#E71D36", "#004BA8", "#FF9F1C",
-	"#011627", "#9b3018", "#ffe047"
+	"#011627", "#9b3018", "#ffe047", "#f97713"
 ];
 var shuffleArray = function(array) {
 	var currentIndex = array.length,
@@ -84,7 +84,6 @@ $(function() {
 	var max = array.length;
 	var pos = Math.floor(Math.random() * max);
 	var cur = array[pos];
-	log(cur)
 	var markup = createColorLists(array);
 	$("body").css("background", cur);
 	$("#colorexamples").html(markup);
@@ -94,6 +93,12 @@ $(function() {
 	});
 	$("#shuffle").on("click", function() {
 		shuffleArray(array);
+		var markup = createColorLists(array);
+		$("body").css("background", cur);
+		$("#colorexamples").html(markup);
+	});
+	$("#sort").on("click",function(){
+		array = array.sort();
 		var markup = createColorLists(array);
 		$("body").css("background", cur);
 		$("#colorexamples").html(markup);

@@ -23,6 +23,9 @@
 				background: black;
 				color:rgba(255,255,255,.7);
 			}
+			.jumbotron > *{
+				text-align: center;
+			}
 		</style>
 		<script src="https://code.jquery.com/jquery.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
@@ -31,12 +34,12 @@
 	<body>
 		<div class="jumbotron">
 			<h1 class="text-center">mycolors</h1>
+			<p class="text-info">This is a collection of my favourite colors</p>
 		</div>
 		<div class="container">
-			
-			<div id="colorexamples">
-			</div>
-			<div id="shuffle" class="btn btn-block btn-info">Shuffle colors</div>
+			<div id="colorexamples"></div>
+				<div id="shuffle" class="btn btn-info btn-block">Shuffle colors</div>
+				<div id="sort" class="btn btn-info btn-block">Sort colors</div>
 		</div>
 	</body>
 </html>
