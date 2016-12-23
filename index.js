@@ -5,25 +5,22 @@ var colors = ["#e22d00", "#2f688e", "#6ed3cf", "#9ad3de",
 	"#62bcfa", "#e05038", "#c43235", "#f2b632",
 	"#D32F2F", "#F44336", "#FF5722", "#FFC107",
 	"#1bbfe4", "#E71D36", "#004BA8", "#FF9F1C",
-	"#011627", "#9b3018", "#ffe047", "#f97713"
+	"#011627", "#9b3018", "#ffe047", "#f97713",
+	"#2281aa"
 ];
 var shuffleArray = function(array) {
 	var currentIndex = array.length,
 		temporaryValue, randomIndex;
-
 	// While there remain elements to shuffle...
 	while (0 !== currentIndex) {
-
 		// Pick a remaining element...
 		randomIndex = Math.floor(Math.random() * currentIndex);
 		currentIndex -= 1;
-
 		// And swap it with the current element.
 		temporaryValue = array[currentIndex];
 		array[currentIndex] = array[randomIndex];
 		array[randomIndex] = temporaryValue;
 	}
-
 	return array;
 };
 var createList = function(colorString) {
@@ -42,6 +39,13 @@ var createList = function(colorString) {
 var wrapToCol = function(item, col_num) {
 	return "<div class='col-md-" + col_num + "'>" + item + "</div>\n\t";
 };
+var wrapToSuccessPanel = function(item) {
+	var panel = "\n<div class='panel panel-success'>\n\t";
+	panel += "<div class='panel-heading text-center'>\n\t\tColors\n\t</div>\n\t"
+	panel += "<div class='panel-body'>\n\t\t" + item + "\n\t</div>\n"
+	panel += "</div>";
+	return panel;
+};
 var log = function(o) {
 	console.log(o);
 };
@@ -53,7 +57,6 @@ var createColorLists = function(colorList) {
 	var numofrows = div(arraySize, 4);
 	if (mod(arraySize, 4))
 		numofrows++;
-	log("Total lists:" + numofrows)
 	var colorIndex = 0;
 	var rowIndex = 0;
 	var remaining = arraySize - div(arraySize, 4);
@@ -72,7 +75,8 @@ var createColorLists = function(colorList) {
 		var colnum = 6;
 		if (i == (numofrows - 1) & mod(numofrows, 2) == 1)
 			colnum = 12;
-		var wrapped = wrapToCol(ul, colnum);
+		var panel = wrapToSuccessPanel(ul);
+		var wrapped = wrapToCol(panel, colnum);
 		str += wrapped;
 		colorIndex += 4;
 	}
@@ -97,7 +101,7 @@ $(function() {
 		$("body").css("background", cur);
 		$("#colorexamples").html(markup);
 	});
-	$("#sort").on("click",function(){
+	$("#sort").on("click", function() {
 		array = array.sort();
 		var markup = createColorLists(array);
 		$("body").css("background", cur);
