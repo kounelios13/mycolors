@@ -6,7 +6,7 @@ var colors = ["#e22d00", "#2f688e", "#6ed3cf", "#9ad3de",
 	"#D32F2F", "#F44336", "#FF5722", "#FFC107",
 	"#1bbfe4", "#E71D36", "#004BA8", "#FF9F1C",
 	"#011627", "#9b3018", "#ffe047", "#f97713",
-	"#2281aa"
+	"#2281aa", "#5cb85c", "#d9534f", "#f0ad4e"
 ];
 var shuffleArray = function(array) {
 	var currentIndex = array.length,
