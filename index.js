@@ -6,7 +6,8 @@ var colors = ["#e22d00", "#2f688e", "#6ed3cf", "#9ad3de",
 	"#D32F2F", "#F44336", "#FF5722", "#FFC107",
 	"#1bbfe4", "#E71D36", "#004BA8", "#FF9F1C",
 	"#011627", "#9b3018", "#ffe047", "#f97713",
-	"#2281aa", "#5cb85c", "#d9534f", "#f0ad4e"
+	"#2281aa", "#5cb85c", "#d9534f", "#f0ad4e",
+	"#5cb85c", "#d9534f","#f0ad4e"
 ];
 var shuffleArray = function(array) {
 	var currentIndex = array.length,
@@ -36,20 +37,18 @@ var createList = function(colorString) {
 	list += "</div>";
 	return list;
 };
-var wrapToCol = function(item, col_num) {
-	return "<div class='col-md-" + col_num + "'>" + item + "</div>\n\t";
+var wrapToCol = (item, col_num)=>{
+	return `<div class='col-md-${col_num}'>${item}</div>\n\t`;
 };
-var wrapToSuccessPanel = function(item) {
+var wrapToSuccessPanel =(item)=>{
 	var panel = "\n<div class='panel panel-success'>\n\t";
 	panel += "<div class='panel-heading text-center'>\n\t\tColors\n\t</div>\n\t"
-	panel += "<div class='panel-body'>\n\t\t" + item + "\n\t</div>\n"
+	panel += `<div class='panel-body'>\n\t\t${item}\n\t</div>\n`;
 	panel += "</div>";
 	return panel;
 };
-var log = function(o) {
-	console.log(o);
-};
-var createColorLists = function(colorList) {
+var log =(o)=>console.log(o);
+var createColorLists =(colorList)=>{
 	var div = (a, b) => Math.floor(a / b);
 	var mod = (a, b) => a % b;
 	var maxCol = 12;
