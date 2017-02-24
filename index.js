@@ -1,14 +1,28 @@
-var colors = ["#e22d00", "#2f688e", "#6ed3cf", "#9ad3de",
-	"#89bdd3", "#89bdd3", "#89bdd3", "#c8be51",
-	"#0091d8", "#00acd8", "#ff8541", "#ffe541",
-	"#4dc4ff", "#e40026", "#98dafc", "#6534ff",
-	"#62bcfa", "#e05038", "#c43235", "#f2b632",
-	"#D32F2F", "#F44336", "#FF5722", "#FFC107",
-	"#1bbfe4", "#E71D36", "#004BA8", "#FF9F1C",
-	"#011627", "#9b3018", "#ffe047", "#f97713",
-	"#2281aa", "#5cb85c", "#d9534f", "#f0ad4e",
-	"#5cb85c", "#d9534f","#f0ad4e"
-];
+var colors = [];
+var array = [];
+var cur = "";
+var loadFromDisk = () => {
+	$.ajax({
+		type: "GET",
+		url: "colors.xml",
+		dataType: "xml",
+		failure:function(err){
+			console.log(err);
+		},
+		success: function(xml) {
+			$(xml).find('value').each(function() {
+				colors.push($(this).text());
+			});
+			array = Array.from(new Set(colors.sort()));
+			var max = array.length;
+			var pos = Math.floor(Math.random() * max);
+			cur = array[pos];
+			var markup = createColorLists(array);
+			$("body").css("background", cur);
+			$("#colorexamples").html(markup);
+		}
+	});
+};
 var shuffleArray = function(array) {
 	var currentIndex = array.length,
 		temporaryValue, randomIndex;
@@ -37,18 +51,18 @@ var createList = function(colorString) {
 	list += "</div>";
 	return list;
 };
-var wrapToCol = (item, col_num)=>{
+var wrapToCol = (item, col_num) => {
 	return `<div class='col-md-${col_num}'>${item}</div>\n\t`;
 };
-var wrapToSuccessPanel =(item)=>{
+var wrapToSuccessPanel = (item) => {
 	var panel = "\n<div class='panel panel-success'>\n\t";
 	panel += "<div class='panel-heading text-center'>\n\t\tColors\n\t</div>\n\t"
 	panel += `<div class='panel-body'>\n\t\t${item}\n\t</div>\n`;
 	panel += "</div>";
 	return panel;
 };
-var log =(o)=>console.log(o);
-var createColorLists =(colorList)=>{
+var log = (o) => console.log(o);
+var createColorLists = (colorList) => {
 	var div = (a, b) => Math.floor(a / b);
 	var mod = (a, b) => a % b;
 	var maxCol = 12;
@@ -83,13 +97,7 @@ var createColorLists =(colorList)=>{
 	return str;
 };
 $(function() {
-	var array = Array.from(new Set(colors.sort()));
-	var max = array.length;
-	var pos = Math.floor(Math.random() * max);
-	var cur = array[pos];
-	var markup = createColorLists(array);
-	$("body").css("background", cur);
-	$("#colorexamples").html(markup);
+	loadFromDisk();
 	$("#colorexamples").on("click", ".list-group-item", function() {
 		var color = $(this).html();
 		$("body").css("background", color);
