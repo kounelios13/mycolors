@@ -1,6 +1,11 @@
 var colors = [];
 var array = [];
 var cur = "";
+var cache = new DomStorage();
+var getRandomItem = array =>{
+	var index = Math.floor(Math.random() * array.length);
+	return array[index];	
+};
 var loadFromDisk = () => {
 	$.ajax({
 		type: "GET",
@@ -14,16 +19,14 @@ var loadFromDisk = () => {
 				colors.push($(this).text());
 			});
 			array = Array.from(new Set(colors.sort()));
-			var max = array.length;
-			var pos = Math.floor(Math.random() * max);
-			cur = array[pos];
+			cur = getRandomItem(array);
 			var markup = createColorLists(array);
-			$("body").css("background", cur);
-			$("#colorexamples").html(markup);
+			cache.get("body").css("background", cur);
+			cache.get("#colorexamples").html(markup);
 		}
 	});
 };
-var shuffleArray = function(array) {
+var shuffleArray = (array) =>{
 	var currentIndex = array.length,
 		temporaryValue, randomIndex;
 	// While there remain elements to shuffle...
@@ -38,7 +41,7 @@ var shuffleArray = function(array) {
 	}
 	return array;
 };
-var createList = function(colorString) {
+var createList = (colorString) =>{
 	var array = colorString.split(',');
 	var max = array.length;
 	//Create the opening tag
@@ -100,18 +103,18 @@ $(function() {
 	loadFromDisk();
 	$("#colorexamples").on("click", ".list-group-item", function() {
 		var color = $(this).html();
-		$("body").css("background", color);
+		cache.get("body").css("background", color);
 	});
 	$("#shuffle").on("click", function() {
 		shuffleArray(array);
 		var markup = createColorLists(array);
-		$("body").css("background", cur);
-		$("#colorexamples").html(markup);
+		cache.get("body").css("background", cur);
+		cache.get("#colorexamples").html(markup);
 	});
 	$("#sort").on("click", function() {
 		array = array.sort();
 		var markup = createColorLists(array);
-		$("body").css("background", cur);
-		$("#colorexamples").html(markup);
+		cache.get("body").css("background", cur);
+		cache.get("#colorexamples").html(markup);
 	});
 });
